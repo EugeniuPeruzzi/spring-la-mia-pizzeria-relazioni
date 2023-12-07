@@ -43,16 +43,22 @@ public class DiscountController {
     }
 	
 	@PostMapping("/pizzas/{id}/discount")
-    public String storeDiscount(@ModelAttribute DiscountDTO discountDTO, @PathVariable int id) {
-        
-        Pizza pizza = pizzaService.findById(id);
-        
-        Discount discount = new Discount(discountDTO.getTitolo(), discountDTO.getDataDiInizio(), discountDTO.getDataDiFine(), pizza);
-        
-        discountService.save(discount);
-        
-        return "redirect:/pizza/{id}";
-    }
+	public String storeDiscount(@Valid @ModelAttribute DiscountDTO discountDTO, BindingResult bindingResult, @PathVariable int id, Model model) {
+	    
+	    if (bindingResult.hasErrors()) {
+	        model.addAttribute("discount", discountDTO);
+	        return "discountCreate";
+	    }
+
+	    Pizza pizza = pizzaService.findById(id);
+	    
+	    Discount discount = new Discount(discountDTO.getTitolo(), discountDTO.getDataDiInizio(), discountDTO.getDataDiFine(), pizza);
+	    
+	    discountService.save(discount);
+	    
+	    return "redirect:/pizza/{id}";
+	}
+	
 	
 	@GetMapping("/pizzas/{pizzaId}/discount/edit/{discountId}")
 	public String editDiscount (Model model, @PathVariable int pizzaId, @PathVariable int discountId) {

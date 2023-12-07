@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Discount {
@@ -18,10 +19,12 @@ public class Discount {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Length(min = 1, max = 30, message = "Il nome della pizza deve contenere tra 1 e 30 caratteri.")
+	@Length(min = 1, max = 30, message = "Il nome dell'offerta deve contenere tra 1 e 30 caratteri.")
 	@NotEmpty(message = "Il campo nome della nome non può essere vuoto.")
 	private String titolo;
+	   @NotNull
     private LocalDate dataDiInizio;
+	   @NotNull
     private LocalDate dataDiFine;
 
     
