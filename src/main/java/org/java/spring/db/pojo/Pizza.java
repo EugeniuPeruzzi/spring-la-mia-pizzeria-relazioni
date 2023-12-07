@@ -39,7 +39,7 @@ public class Pizza {
 	private double price;  // Prezzo della pizza
 	
 	@OneToMany(mappedBy = "pizza")
-	private List<Discount> borrowings;
+	private List<Discount> discount;
 	
 	// Costruttore vuoto richiesto da JPA
 	public Pizza() {}
@@ -92,6 +92,14 @@ public class Pizza {
 		this.price = price;
 	}
 	
+	public List<Discount> getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(List<Discount> discount) {
+		this.discount = discount;
+	}
+
 	// Metodo toString per la rappresentazione testuale dell'oggetto Pizza
 	@Override
 	public String toString() {

@@ -2,11 +2,14 @@ package org.java.spring.db.pojo;
 
 import java.time.LocalDate;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Discount {
@@ -15,7 +18,8 @@ public class Discount {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	
+	@Length(min = 1, max = 30, message = "Il nome della pizza deve contenere tra 1 e 30 caratteri.")
+	@NotEmpty(message = "Il campo nome della nome non può essere vuoto.")
 	private String titolo;
     private LocalDate dataDiInizio;
     private LocalDate dataDiFine;

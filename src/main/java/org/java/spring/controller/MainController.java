@@ -2,6 +2,7 @@ package org.java.spring.controller;
 
 import java.util.List;
 
+import org.java.spring.db.pojo.Discount;
 import org.java.spring.db.pojo.Pizza;
 import org.java.spring.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,14 @@ public class MainController {
 		// Recupera una pizza specifica dal servizio utilizzando l'ID fornito
 		Pizza pizzaId = pizzaService.findById(id);
 		
+	    // Recupera gli sconti applicati a questa pizza
+	    List<Discount> discounts = pizzaId.getDiscount();
+		
 		// Aggiunge la pizza al modello per renderla disponibile nella vista
 		model.addAttribute("pizza", pizzaId);
+		model.addAttribute("discounts" , discounts);
+		
+		
 		
 		// Restituisce il nome della vista da visualizzare ("pizzaShow" in questo caso)
 		return "pizzaShow";
