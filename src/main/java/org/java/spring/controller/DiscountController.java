@@ -9,10 +9,13 @@ import org.java.spring.dto.DiscountDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -48,6 +51,35 @@ public class DiscountController {
         
         discountService.save(discount);
         
-        return "redirect:/";
+        return "redirect:/pizza/{id}";
     }
+	
+	@GetMapping("/pizzas/{pizzaId}/discount/edit/{discountId}")
+	public String editDiscount (Model model, @PathVariable int pizzaId, @PathVariable int discountId) {
+	    Discount discount = discountService.findById(discountId);
+	    model.addAttribute("discount", discount);
+	    return "discountCreate";
+	}
+	
+	@PostMapping("/pizzas/{pizzaId}/discount/edit/{discountId}")
+	public String updateDiscount(@ModelAttribute DiscountDTO discountDTO, @PathVariable int pizzaId, @PathVariable int discountId) {
+	    
+	    // Trova la pizza e lo sconto esistenti
+	    Pizza pizza = pizzaService.findById(pizzaId);
+	    Discount discount = discountService.findById(discountId);
+
+	    // Aggiorna i campi dello sconto
+	    discount.setTitolo(discountDTO.getTitolo());
+	    discount.setDataDiInizio(discountDTO.getDataDiInizio());
+	    discount.setDataDiFine(discountDTO.getDataDiFine());
+	    discount.setPizza(pizza);
+
+	    // Salva lo sconto aggiornato
+	    discountService.save(discount);
+
+	    // Reindirizza alla pagina della pizza
+	    return "redirect:/pizza/{pizzaId}";
+	}
+	
+	
 }

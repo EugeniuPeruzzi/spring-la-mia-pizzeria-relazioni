@@ -22,6 +22,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="m-3 text-center" th:each="discount : ${discounts}">
+
+                    <h5 class="d-inline-block">[[${discount.getTitolo()}]] dal [[${discount.getDataDiInizio()}]] al
+                        [[${discount.getDataDiFine()}]]</h5>
+
+                    <a th:href="@{/pizzas/{pizzaId}/discount/edit/{discountId} (pizzaId=${pizza.getId()}, discountId=${discount.getId()})}"
+                        class="btn btn-sm btn-warning">Modifica Offerta</a>
+
+                </div>
             </div>
         </div>
     </div>

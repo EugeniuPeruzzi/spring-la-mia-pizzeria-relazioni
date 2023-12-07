@@ -51,9 +51,10 @@ public class MainController {
 		
 		// Aggiunge la pizza al modello per renderla disponibile nella vista
 		model.addAttribute("pizza", pizzaId);
+		
 		model.addAttribute("discounts" , discounts);
 		
-		
+	
 		
 		// Restituisce il nome della vista da visualizzare ("pizzaShow" in questo caso)
 		return "pizzaShow";

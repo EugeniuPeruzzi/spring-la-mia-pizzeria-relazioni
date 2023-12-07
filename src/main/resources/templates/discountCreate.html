@@ -16,13 +16,15 @@
                     <!-- Data di inizio -->
                     <div class="mb-3">
                         <lable for="dataDiInizio" class="form-label">Inizio Offerta</lable>
-                        <input type="date" name="dataDiInizio" id="dataDiInizio" th:field="*{dataDiInizio}" class="form-control" />
+                        <input type="date" name="dataDiInizio" id="dataDiInizio" th:field="*{dataDiInizio}"
+                            class="form-control" />
                         <div th:replace="frags/frags :: errorDiv('dataDiInizio')"></div>
                     </div>
                     <!-- Data di fine -->
                     <div class="mb-3">
                         <lable for="dataDiFine" class="form-label">Fine offerta</lable>
-                        <input type="date" name="dataDiInizio" id="dataDiFine" th:field="*{dataDiFine}" class="form-control" />
+                        <input type="date" name="dataDiFine" id="dataDiFine" th:field="*{dataDiFine}"
+                            class="form-control" />
                         <div th:replace="frags/frags :: errorDiv('dataDiFine')"></div>
                     </div>
                     <!-- Submit button -->
