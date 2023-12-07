@@ -1,7 +1,6 @@
 package org.java.spring.db.pojo;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -61,6 +60,15 @@ public class Discount {
 	}
 	public void setPizza(Pizza pizza) {
 		this.pizza = pizza;
+	}
+	
+	@Override
+	public String toString() {
+	    return "Discount " 
+	    		+ ", titolo=" + getTitolo() 
+	    		+ ", dataDiInizio=" + getDataDiInizio()
+	            + ", dataDiFine=" + getDataDiFine() 
+	    		+ ", pizza=" + getPizza() + "]";
 	}
 	
 	

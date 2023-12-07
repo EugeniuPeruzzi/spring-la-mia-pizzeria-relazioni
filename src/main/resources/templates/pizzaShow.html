@@ -17,6 +17,8 @@
                             <p class="card-text">[[${pizza.getDescription()}]]</p>
                             <h5 th:text="|${#numbers.formatDecimal(pizza.getPrice(), 1, 2)}$|"></h5>
                             <a th:href="@{/}" class="btn btn-primary">Back</a>
+                            <a th:href="@{/pizzas/{pizzaId}/discount (pizzaId=${pizza.getId()})}"
+                                class="btn btn-success">Nuova Offerta</a>
                         </div>
                     </div>
                 </div>
