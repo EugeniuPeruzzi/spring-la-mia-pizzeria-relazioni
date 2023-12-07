@@ -1,6 +1,11 @@
 package org.java.spring;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import org.java.spring.db.pojo.Discount;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.serv.DiscountService;
 import org.java.spring.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,6 +18,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
     @Autowired
     private PizzaService pizzaService;
 
+    @Autowired
+    private DiscountService discountService;
+    
     public static void main(String[] args) {
         SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
     }
@@ -29,5 +37,16 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
         pizzaService.save(new Pizza("Capricciosa", "Descrizione 5", "https://picsum.photos/400/400", 13.1));
         pizzaService.save(new Pizza("Marinara", "Descrizione 6", "https://picsum.photos/400/400", 8.2));
         pizzaService.save(new Pizza("Napoletana", "Descrizione 7", "https://picsum.photos/400/400", 9.4));
+    
+    	List<Pizza> pizza = pizzaService.findAll();
+    	
+    	discountService.save(new Discount("Offerta 1", LocalDate.now(), LocalDate.now().plusDays(5),pizza.get(0)));
+    	discountService.save(new Discount("Offerta 2", LocalDate.now(), LocalDate.now().plusDays(10),pizza.get(1)));
+    	discountService.save(new Discount("Offerta 3", LocalDate.now(), LocalDate.now().plusDays(3),pizza.get(2)));
+    	discountService.save(new Discount("Offerta 4", LocalDate.now(), LocalDate.now().plusDays(7),pizza.get(3)));
+    	discountService.save(new Discount("Offerta 5", LocalDate.now(), LocalDate.now().plusDays(15),pizza.get(4)));
+    
     }
+    
+    
 }
