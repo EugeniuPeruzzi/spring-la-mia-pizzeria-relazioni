@@ -1,5 +1,6 @@
 package org.java.spring.db.pojo;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
@@ -50,11 +51,12 @@ public class Pizza {
 	public Pizza() {}
 	
 	// Costruttore per creare una nuova pizza con informazioni iniziali
-	public Pizza(String name, String description, String foto, double price) {
+	public Pizza(String name, String description, String foto, double price, Ingredient... ingredients) {
 		setName(name);
 		setDescription(description);
 		setFoto(foto);
 		setPrice(price);
+		setIngredients(ingredients);
 	}
 
 	public int getId() {
@@ -104,6 +106,24 @@ public class Pizza {
 	public void setDiscount(List<Discount> discount) {
 		this.discount = discount;
 	}
+	
+
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+	
+	public void setIngredients(Ingredient... ingredients) {
+		setIngredients(Arrays.asList(ingredients));
+	}
+	
+	public void clearIngredients() {
+		getIngredients().clear();
+	}
+	
 
 	// Metodo toString per la rappresentazione testuale dell'oggetto Pizza
 	@Override
