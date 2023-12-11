@@ -8,6 +8,7 @@ import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
 import org.java.spring.db.repo.IngredientRepo;
 import org.java.spring.db.serv.DiscountService;
+import org.java.spring.db.serv.IngredientService;
 import org.java.spring.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,7 +25,7 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
     private DiscountService discountService;
     
 	@Autowired
-	private IngredientRepo ingredientRepo;
+	private IngredientService ingredientService;
 	
     
     public static void main(String[] args) {
@@ -52,12 +53,12 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
     	discountService.save(new Discount("Offerta 4", LocalDate.now(), LocalDate.now().plusDays(7),pizza.get(3)));
     	discountService.save(new Discount("Offerta 5", LocalDate.now(), LocalDate.now().plusDays(15),pizza.get(4)));
     	
-    	ingredientRepo.save(new Ingredient("Pomodoro"));
-    	ingredientRepo.save(new Ingredient("Mozzarella"));
-    	ingredientRepo.save(new Ingredient("Basilico"));
-    	ingredientRepo.save(new Ingredient("Funghi"));
-    	ingredientRepo.save(new Ingredient("Prosciutto"));
-    	ingredientRepo.save(new Ingredient("Salamino"));
+    	ingredientService.save(new Ingredient("Pomodoro"));
+    	ingredientService.save(new Ingredient("Mozzarella"));
+    	ingredientService.save(new Ingredient("Basilico"));
+    	ingredientService.save(new Ingredient("Funghi"));
+    	ingredientService.save(new Ingredient("Prosciutto"));
+    	ingredientService.save(new Ingredient("Salamino"));
 
     	
     }

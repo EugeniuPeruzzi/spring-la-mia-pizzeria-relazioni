@@ -37,6 +37,22 @@
                         <input type="text" id="price" th:field="*{price}" class="form-control">
                         <div th:replace="frags/frags :: errorDiv('price')"></div>
                     </div>
+
+                    <!-- ingredienti -->
+                    <!-- <div class="mb-3">
+                        <lable for="ingredients" class="form-label">Prezzo</lable>
+                        <input type="checkbox" id="ingredients" th:field="*{ingredients}" class="form-control">
+                        <div th:replace="frags/frags :: errorDiv('ingredients')"></div>
+                    </div> -->
+
+                    <div th:each="ingredient : ${ingredients}" class="mb-3">
+                        <input type="checkbox" th:id="${'ingredient-' + ingredient.id}" th:value="${ingredient.id}"
+                            name="ingredients" th:checked="${#lists.contains(pizza.ingredients, ingredient)}">
+                        <label th:for="${'ingredient-' + ingredient.id}">[[${ingredient.name}]]</label>
+                        <div th:replace="frags/frags :: errorDiv('ingredients')"></div>
+                    </div>
+
+
                     <button type="submit" class="btn btn-primary" value="STORE">Submit</button>
                 </form>
             </div>

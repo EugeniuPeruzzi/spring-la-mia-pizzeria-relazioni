@@ -8,13 +8,16 @@
             <!-- Frammento di ricerca -->
             <div th:replace="frags/frags :: searchFrag"></div>
             <!-- Pulsante per aggiungere una nuova pizza -->
-            <div class="col-2 ">
+            <div class="col-12 d-flex justify-content-center">
                 <a href="/pizza/create">
-                    <button class="btn btn-warning ms-2" type="button">Add pizzza</button>
+                    <button class="btn btn-success ms-2" type="button">Add pizzza</button>
+                </a>
+                <a href="/ingredients">
+                    <button class="btn btn-success ms-2" type="button">+ Ingredienti</button>
                 </a>
             </div>
             <!-- Lista delle pizze -->
-            <div class="col">
+            <div class="col-12">
                 <div class="d-flex flex-wrap justify-content-center">
                     <!-- Messaggio se non ci sono pizze -->
                     <div th:if="${pizze.isEmpty()}">
