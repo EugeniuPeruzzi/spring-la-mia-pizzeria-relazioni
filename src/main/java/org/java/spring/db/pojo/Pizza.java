@@ -12,7 +12,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -124,6 +123,9 @@ public class Pizza {
 		getIngredients().clear();
 	}
 	
+	public void clearDiscount() {
+		getDiscount().clear();
+	}
 
 	// Metodo toString per la rappresentazione testuale dell'oggetto Pizza
 	@Override

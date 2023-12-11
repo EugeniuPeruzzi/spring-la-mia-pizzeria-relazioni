@@ -5,6 +5,7 @@ import java.util.List;
 import org.java.spring.db.pojo.Discount;
 import org.java.spring.db.pojo.Ingredient;
 import org.java.spring.db.pojo.Pizza;
+import org.java.spring.db.serv.DiscountService;
 import org.java.spring.db.serv.IngredientService;
 import org.java.spring.db.serv.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class MainController {
 	private PizzaService pizzaService;
 	@Autowired
 	private IngredientService ingredientService;
+	@Autowired
+	private DiscountService discountService;
 	
 
 	// Questo metodo gestisce le richieste GET sulla radice dell'applicazione
@@ -141,7 +144,11 @@ public class MainController {
 	    // Trova la pizza con l'ID specificato
 	    Pizza pizza = pizzaService.findById(id);
 	    // Elimina la pizza trovata
+	    List<Discount> discounts = pizza.getDiscount();
+	    discounts.forEach(discountService::delete);
+	    pizza.clearIngredients();
 	    pizzaService.delete(pizza);
+	   
 	    // Reindirizza l'utente alla pagina principale
 	    return "redirect:/";
 	}
